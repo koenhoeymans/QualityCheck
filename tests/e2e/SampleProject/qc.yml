@@ -1,0 +1,11 @@
+settings:
+    build_dir: /tmp/build
+    ignore:
+        - src/Bar.php
+
+tests:
+    phpunit:
+        - codecoverage
+    phploc:
+    phpcs:
+    phpcpd:

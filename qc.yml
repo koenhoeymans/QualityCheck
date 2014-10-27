@@ -1,0 +1,13 @@
+settings:
+    build_dir: build
+    ignore:
+        - vendor
+        - tests/e2e/SampleProject
+        - ContainsPsr2Mistake
+
+tests:
+    phploc:
+    phpunit:
+        - codecoverage
+    phpcs:
+    phpcpd:

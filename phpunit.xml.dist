@@ -1,0 +1,24 @@
+<phpunit>
+	<testsuites>
+ 		 <testsuite name="unittests">
+			<directory>./tests/unit</directory>
+        </testsuite>
+	    <testsuite name="end2endtests">
+            <directory>./tests/e2e</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <blacklist>
+            <directory>./vendor</directory>
+            <directory>tests</directory>
+        </blacklist>
+    </filter>
+    <groups>
+        <exclude>
+            <group>e2eSubtest</group>
+        </exclude>
+    </groups>
+    <logging>
+        <log type="coverage-html" target="./build/codecoverage" />
+    </logging>
+</phpunit>

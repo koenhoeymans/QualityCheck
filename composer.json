@@ -1,0 +1,22 @@
+{
+	"name": "qualitycheck/qualitycheck",
+	"description": "basic quality check for you PHP project",
+	"license": "BSD-2-Clause",
+	"authors": [{
+		"name": "Koen Hoeymans",
+		"email": "koenhoeymans@gmail.com",
+		"role": "lead"
+	}],
+	"require": {
+		"php": ">=5.4.6",
+		"phpunit/phpunit": "*",
+        "phploc/phploc": "*",
+        "squizlabs/php_codesniffer": "*",
+        "sebastian/phpcpd": "*",
+        "symfony/yaml": "*",
+        "epa/epa": "*"
+	},
+	"autoload": {
+	    "psr-4": { "QualityCheck\\": ["src/", "tests", "tests/unit", "tests/e2e"] }
+	}
+}

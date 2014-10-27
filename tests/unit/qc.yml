@@ -1,0 +1,8 @@
+settings:
+    build_dir: build
+
+tests:
+    phpunit:
+    phploc:
+    phpcs:
+    phpcpd:
