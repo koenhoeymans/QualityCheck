@@ -142,13 +142,14 @@ class YmlConfigTest extends \PHPUnit_Framework_TestCase
      */
     public function knowsBuildDirFromYmlFileAndCwd()
     {
+    	$buildDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'build';
         $this->parser
              ->expects($this->atLeastOnce())
              ->method('parse')
              ->will($this->returnValue(
-                 array('settings' => array('build_dir' => '/tmp/build'))
+                 array('settings' => array('build_dir' => $buildDir))
              ));
-        $buildDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'build';
+
         $_SERVER['argv'] = array(__DIR__ . DIRECTORY_SEPARATOR . 'qc', __DIR__);
 
         $this->assertEquals($buildDir, $this->config->getBuildDir());
