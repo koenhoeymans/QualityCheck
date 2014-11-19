@@ -1,5 +1,5 @@
 settings:
-    build_dir: build
+    build_dir: build/qualitycheck
     ignore:
         - vendor
         - tests/e2e/SampleProject

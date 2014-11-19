@@ -19,6 +19,6 @@
         </exclude>
     </groups>
     <logging>
-        <log type="coverage-html" target="./build/codecoverage" />
+        <log type="coverage-html" target="./build/qualitycheck/codecoverage" />
     </logging>
 </phpunit>
