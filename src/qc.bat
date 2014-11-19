@@ -1,0 +1,3 @@
+@ECHO OFF
+SET BIN_TARGET=%~dp0qc
+php "%BIN_TARGET%" %*
