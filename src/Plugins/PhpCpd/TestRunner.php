@@ -6,8 +6,6 @@ class TestRunner
 {
     private $config;
 
-    private $outputDir;
-
     private $ignoreFiles = array();
 
     private $ignoreDirs = array();
@@ -19,19 +17,19 @@ class TestRunner
 
     public function reportTestResults(\QualityCheck\ReportTestResults $results)
     {
-        $this->outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
+        $outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
             . 'phpcpd' . DIRECTORY_SEPARATOR;
-        if (!is_dir($this->outputDir)) {
-            mkdir($this->outputDir);
+        if (!is_dir($outputDir)) {
+            mkdir($outputDir);
         }
 
         $this->addToIgnore();
 
         $log = shell_exec($this->getCommand());
 
-        file_put_contents($this->outputDir . 'cmdLog.txt', $log);
+        file_put_contents($outputDir . 'cmdLog.txt', $log);
 
-        $results->addLogFile('PhpCpd log', $this->outputDir . 'cmdLog.txt');
+        $results->addLogFile('PhpCpd log', 'phpcpd/cmdLog.txt');
     }
 
     private function addToIgnore()

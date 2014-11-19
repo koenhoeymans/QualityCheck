@@ -25,10 +25,7 @@ class TestRunner
         $log = shell_exec($this->getCommand());
 
         file_put_contents($this->outputDir . 'cmdLog.txt', $log);
-        $results->addLogFile(
-            'PhpLoc log',
-            $this->outputDir . 'cmdLog.txt'
-        );
+        $results->addLogFile('PhpLoc log', 'phploc/cmdLog.txt');
     }
 
     private function addToIgnore()

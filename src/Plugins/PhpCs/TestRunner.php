@@ -6,8 +6,6 @@ class TestRunner
 {
     private $config;
 
-    private $outputDir;
-
     public function __construct(\QualityCheck\Config $config)
     {
         $this->config = $config;
@@ -15,22 +13,19 @@ class TestRunner
 
     public function reportTestResults(\QualityCheck\ReportTestResults $results)
     {
-        $this->outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
+        $outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
             . 'phpcs' . DIRECTORY_SEPARATOR;
-        if (!is_dir($this->outputDir)) {
-            mkdir($this->outputDir);
+        if (!is_dir($outputDir)) {
+            mkdir($outputDir);
         }
 
         $log = shell_exec($this->getCommand());
         if (empty($log)) {
             $log = 'no problems detected';
         }
-        file_put_contents($this->outputDir . 'cmdLog.txt', $log);
+        file_put_contents($outputDir . 'cmdLog.txt', $log);
 
-        $results->addLogFile(
-            'PhpCodeSniffer PSR2 log',
-            $this->outputDir . 'cmdLog.txt'
-        );
+        $results->addLogFile('PhpCodeSniffer PSR2 log', 'phpcs/cmdLog.txt');
     }
 
     private function getCommand()

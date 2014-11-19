@@ -32,9 +32,9 @@ class TestRunner
 
         file_put_contents($this->outputDir . 'cmdLog.txt', $log);
 
-        $results->addLogFile('PhpUnit log', $this->outputDir . 'cmdLog.txt');
+        $results->addLogFile('PhpUnit log', 'phpunit/cmdLog.txt');
         if ($this->config->hasTestOption('phpunit', 'codecoverage')) {
-            $results->addLogFile('CodeCoverage', $this->coverageDir . 'index.html');
+            $results->addLogFile('CodeCoverage', 'codecoverage/index.html');
         }
     }
 
