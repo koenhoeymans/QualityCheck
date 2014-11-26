@@ -74,7 +74,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
         $this->testResults
              ->expects($this->once())
              ->method('addLogFile')
-             ->with('PhpUnit log', $this->logfile);
+             ->with('PhpUnit log', 'phpunit/cmdLog.txt');
 
         $this->test->reportTestResults($this->testResults);
     }
@@ -116,9 +116,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
      */
     public function addsCodeCoverageLinkToTestResultsIfOptionSpecified()
     {
-        $ccIndexFile = $this->buildDir . DIRECTORY_SEPARATOR
-                      . 'codecoverage' . DIRECTORY_SEPARATOR
-                      . 'index.html';
+        $ccIndexFile = 'codecoverage/index.html';
 
         $this->config
              ->expects($this->atLeastOnce())

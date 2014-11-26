@@ -84,7 +84,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
         $this->testResults
              ->expects($this->once())
              ->method('addLogFile')
-             ->with('PhpCpd log', $this->logfile);
+             ->with('PhpCpd log', 'phpcpd/cmdLog.txt');
 
         $this->test->reportTestResults($this->testResults);
     }

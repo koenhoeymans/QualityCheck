@@ -77,7 +77,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
         $this->testResults
              ->expects($this->once())
              ->method('addLogFile')
-             ->with('PhpLoc log', $this->logfile);
+             ->with('PhpLoc log', 'phploc/cmdLog.txt');
 
         $this->test->reportTestResults($this->testResults);
     }
