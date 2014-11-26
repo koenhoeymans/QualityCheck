@@ -1,5 +1,5 @@
 settings:
-    build_dir: <?php sys_get_temp_dir() . DIRECTORY_SEPERATOR . 'build'; ?>
+    build_dir: tmp/
     ignore:
         - src/Bar.php
 

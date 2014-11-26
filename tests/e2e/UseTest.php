@@ -8,7 +8,8 @@ class UseTest extends TestUtils
 
     public function setup()
     {
-        $this->buildDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'build';
+        $this->buildDir = __DIR__ . DIRECTORY_SEPARATOR
+        	. 'SampleProject' . DIRECTORY_SEPARATOR . 'tmp';
 
         if (is_dir($this->buildDir)) {
             $this->removeDir($this->buildDir);
