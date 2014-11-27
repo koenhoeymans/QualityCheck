@@ -18,7 +18,7 @@ class QualityCheck
         $buildDir = $this->config->getBuildDir();
 
         if (!is_dir($buildDir)) {
-            mkdir($this->config->getBuildDir());
+            mkdir($this->config->getBuildDir(), 0777, true);
         }
 
         $reportTestResults = new ReportTestResults();
