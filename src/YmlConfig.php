@@ -22,11 +22,11 @@ class YmlConfig implements Config
         } else {
             return $this->getProjectDir() . DIRECTORY_SEPARATOR . 'build';
         }
-
-        if (is_dir($this->getProjectDir() . DIRECTORY_SEPARATOR . $buildDir)) {
-            return $this->getProjectDir() . DIRECTORY_SEPARATOR . $buildDir;
+        
+        if (preg_match('@^[a-zA-Z]:|^/@', $buildDir)) {
+        	return $buildDir;
         } else {
-            return $buildDir;
+        	return $this->getProjectDir() . DIRECTORY_SEPARATOR . $buildDir;
         }
     }
 

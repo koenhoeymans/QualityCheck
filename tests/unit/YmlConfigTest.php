@@ -140,7 +140,7 @@ class YmlConfigTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function knowsBuildDirFromYmlFileAndCwd()
+    public function buildDirIsTakenAsSpecifiedWhenFullPath()
     {
         $buildDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'build';
         $this->parser
@@ -154,6 +154,24 @@ class YmlConfigTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($buildDir, $this->config->getBuildDir());
     }
+
+    /**
+     * @test
+     */
+	public function buildDirIsTranslatedToFullPathWhenSpecifiedRelativeDir()
+	{
+		$buildDir = __DIR__ . DIRECTORY_SEPARATOR . 'build';
+		$this->parser
+			->expects($this->atLeastOnce())
+			->method('parse')
+			->will($this->returnValue(
+				array('settings' => array('build_dir' => 'build'))
+		));
+
+		$_SERVER['argv'] = array(__DIR__ . DIRECTORY_SEPARATOR . 'qc', __DIR__);
+
+		$this->assertEquals($buildDir, $this->config->getBuildDir());		
+	}
 
     /**
      * @test
