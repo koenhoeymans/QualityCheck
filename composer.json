@@ -18,5 +18,6 @@
 	},
 	"autoload": {
 	    "psr-4": { "QualityCheck\\": ["src/", "tests", "tests/unit", "tests/e2e"] }
-	}
+	},
+    "bin": ["src/qc"]
 }
