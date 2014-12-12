@@ -51,15 +51,32 @@ class TestRunner
 
     private function getCommand()
     {
-        $cmd = realpath(
+        $bins = array(
             __DIR__ . DIRECTORY_SEPARATOR
             . '..' . DIRECTORY_SEPARATOR
             . '..' . DIRECTORY_SEPARATOR
             . '..' . DIRECTORY_SEPARATOR
             . 'vendor' . DIRECTORY_SEPARATOR
             . 'bin' . DIRECTORY_SEPARATOR
-            . 'phploc'
+            . 'phploc',
+            __DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin' . DIRECTORY_SEPARATOR
+            . 'phploc',
         );
+
+        foreach ($bins as $bin) {
+            $cmd = realpath($bin);
+            if ($cmd) {
+                break;
+            }
+        }
 
         $excludeFiles = implode($this->ignoreFiles, ',');
         if (!empty($excludeFiles)) {

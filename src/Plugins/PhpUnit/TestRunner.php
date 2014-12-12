@@ -40,15 +40,33 @@ class TestRunner
 
     private function getCommand()
     {
-        $cmd = realpath(
+        $bins = array(
             __DIR__ . DIRECTORY_SEPARATOR
             . '..' . DIRECTORY_SEPARATOR
             . '..' . DIRECTORY_SEPARATOR
             . '..' . DIRECTORY_SEPARATOR
             . 'vendor' . DIRECTORY_SEPARATOR
             . 'bin' . DIRECTORY_SEPARATOR
-            . 'phpunit'
+            . 'phpunit',
+            __DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin' . DIRECTORY_SEPARATOR
+            . 'phpunit',
         );
+
+        foreach ($bins as $bin) {
+            $cmd = realpath($bin);
+            if ($cmd) {
+                break;
+            }
+        }
+
         $cmd = $this->addCoverageOption($cmd);
 
         return $cmd;
