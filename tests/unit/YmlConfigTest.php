@@ -158,20 +158,20 @@ class YmlConfigTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-	public function buildDirIsTranslatedToFullPathWhenSpecifiedRelativeDir()
-	{
-		$buildDir = __DIR__ . DIRECTORY_SEPARATOR . 'build';
-		$this->parser
-			->expects($this->atLeastOnce())
-			->method('parse')
-			->will($this->returnValue(
-				array('settings' => array('build_dir' => 'build'))
-		));
+    public function buildDirIsTranslatedToFullPathWhenSpecifiedRelativeDir()
+    {
+        $buildDir = __DIR__ . DIRECTORY_SEPARATOR . 'build';
+        $this->parser
+            ->expects($this->atLeastOnce())
+            ->method('parse')
+            ->will($this->returnValue(
+                array('settings' => array('build_dir' => 'build'))
+            ));
 
-		$_SERVER['argv'] = array(__DIR__ . DIRECTORY_SEPARATOR . 'qc', __DIR__);
+        $_SERVER['argv'] = array(__DIR__ . DIRECTORY_SEPARATOR . 'qc', __DIR__);
 
-		$this->assertEquals($buildDir, $this->config->getBuildDir());		
-	}
+        $this->assertEquals($buildDir, $this->config->getBuildDir());
+    }
 
     /**
      * @test
