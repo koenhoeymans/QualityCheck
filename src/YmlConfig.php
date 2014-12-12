@@ -24,9 +24,9 @@ class YmlConfig implements Config
         }
         
         if (preg_match('@^[a-zA-Z]:|^/@', $buildDir)) {
-        	return $buildDir;
+            return $buildDir;
         } else {
-        	return $this->getProjectDir() . DIRECTORY_SEPARATOR . $buildDir;
+            return $this->getProjectDir() . DIRECTORY_SEPARATOR . $buildDir;
         }
     }
 
