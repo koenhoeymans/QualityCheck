@@ -8,8 +8,8 @@
 		"role": "lead"
 	}],
 	"require": {
-		"php": ">=5.4.6",
-		"phpunit/phpunit": "*",
+		"php": ">=7.1",
+		"phpunit/phpunit": "6.*",
         "phploc/phploc": "*",
         "squizlabs/php_codesniffer": "*",
         "sebastian/phpcpd": "*",
