@@ -7,7 +7,7 @@ require __DIR__ . DIRECTORY_SEPARATOR
     . 'src'     . DIRECTORY_SEPARATOR
     . 'Foo.php';
 
-class FooTest extends \PHPUnit_Framework_TestCase
+class FooTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

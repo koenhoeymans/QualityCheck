@@ -2,7 +2,7 @@
 
 namespace QualityCheck\Plugins;
 
-class RegistrarTest extends \PHPUnit_Framework_TestCase
+class RegistrarTest extends \PHPUnit\Framework\TestCase
 {
     private $factory;
 
@@ -10,7 +10,7 @@ class RegistrarTest extends \PHPUnit_Framework_TestCase
 
     public function setup()
     {
-        $this->factory = $this->getMock(
+        $this->factory = $this->createMock(
             '\\QualityCheck\\Plugins\\TestRunnerFactory'
         );
         $this->registrar = new \QualityCheck\Plugins\Registrar($this->factory);
@@ -21,7 +21,7 @@ class RegistrarTest extends \PHPUnit_Framework_TestCase
      */
     public function registersPhpCpdToReportTestResults()
     {
-        $eventDispatcher = $this->getMock('\\Epa\\Api\\EventDispatcher');
+        $eventDispatcher = $this->createMock('\\Epa\\Api\\EventDispatcher');
         $eventDispatcher->expects($this->once())
                         ->method('registerForEvent')
                         ->with(
@@ -37,7 +37,7 @@ class RegistrarTest extends \PHPUnit_Framework_TestCase
      */
     public function initiatesPhpCpdTestOnEvent()
     {
-        $event = $this->getMock('\\QualityCheck\\ReportTestResults');
+        $event = $this->createMock('\\QualityCheck\\ReportTestResults');
         $testRunner = $this->getMockBuilder(
             '\\QualityCheck\\Plugins\\PhpCpd\\TestRunner'
         )->disableOriginalConstructor()->getMock();

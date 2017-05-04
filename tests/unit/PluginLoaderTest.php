@@ -2,13 +2,13 @@
 
 namespace QualityCheck;
 
-class PluginLoaderTest extends \PHPUnit_Framework_TestCase
+class PluginLoaderTest extends \PHPUnit\Framework\TestCase
 {
     private $eventDispatcher;
 
     public function setup()
     {
-        $this->eventDispatcher = $this->getMock('\\Epa\\Api\\EventDispatcher');
+        $this->eventDispatcher = $this->createMock('\\Epa\\Api\\EventDispatcher');
         $this->pluginLoader = new \QualityCheck\PluginLoader(
             $this->eventDispatcher
         );
@@ -19,7 +19,7 @@ class PluginLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function loadsRegistrarForPluginsFromConfig()
     {
-        $config = $this->getMock('\\QualityCheck\\Config');
+        $config = $this->createMock('\\QualityCheck\\Config');
         $config->expects($this->atLeastOnce())
                ->method('getTestNames')
                ->will($this->returnValue(array('MyUnit')));
@@ -38,7 +38,7 @@ class PluginLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function pluginNamesFromConfigAreCaseInsensitive()
     {
-        $config = $this->getMock('\\QualityCheck\\Config');
+        $config = $this->createMock('\\QualityCheck\\Config');
         $config->expects($this->atLeastOnce())
                ->method('getTestNames')
                ->will($this->returnValue(array('pHpUniT')));

@@ -2,7 +2,7 @@
 
 namespace QualityCheck;
 
-class YmlConfigTest extends \PHPUnit_Framework_TestCase
+class YmlConfigTest extends \PHPUnit\Framework\TestCase
 {
     private $parser;
 

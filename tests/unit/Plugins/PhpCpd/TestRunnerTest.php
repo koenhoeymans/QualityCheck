@@ -20,7 +20,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
     {
         $this->teardown();
 
-        $this->config = $this->getMock('\\QualityCheck\\Config');
+        $this->config = $this->createMock('\\QualityCheck\\Config');
         $this->testResults = $this->getMockBuilder('\\QualityCheck\\ReportTestResults')
                                   ->disableOriginalConstructor()
                                   ->getMock();

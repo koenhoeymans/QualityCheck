@@ -2,7 +2,7 @@
 
 namespace QualityCheck;
 
-class TestUtils extends \PHPUnit_Framework_TestCase
+class TestUtils extends \PHPUnit\Framework\TestCase
 {
     protected function removeDir($dir)
     {

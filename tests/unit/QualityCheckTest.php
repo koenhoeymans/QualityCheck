@@ -2,7 +2,7 @@
 
 namespace QualityCheck;
 
-class QualityCheckTest extends \PHPUnit_Framework_TestCase
+class QualityCheckTest extends \PHPUnit\Framework\TestCase
 {
     private $buildDir;
 
@@ -16,7 +16,7 @@ class QualityCheckTest extends \PHPUnit_Framework_TestCase
     {
         $this->buildDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'build';
         $this->file = $this->buildDir . DIRECTORY_SEPARATOR . 'index.html';
-        $this->config = $this->getMock('\\QualityCheck\\Config');
+        $this->config = $this->createMock('\\QualityCheck\\Config');
         $this->qc = new \QualityCheck\QualityCheck($this->config);
 
         $this->teardown();
@@ -53,7 +53,7 @@ class QualityCheckTest extends \PHPUnit_Framework_TestCase
              ->expects($this->atLeastOnce())
              ->method('getBuildDir')
              ->will($this->returnValue($this->buildDir));
-        $observer = $this->getMock('\\Epa\\Api\\Observer');
+        $observer = $this->createMock('\\Epa\\Api\\Observer');
         $this->qc->addObserver($observer);
         $observer->expects($this->once())
                  ->method('notify')
