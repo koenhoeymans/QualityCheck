@@ -1,9 +1,5 @@
-# Change Log
+# QualityCheck
 
-## [unreleased]
+## What is it?
 
-### Noteworthy
-- requires PHP 7.1 or higher
-- requires PHPUnit 6 or higher
-- requires xdebug
-- basic support for PHPUnit, PHPCPD, PHP_CodeSniffer, PHPLOC
+Collects metrics about code quality provided by various libraries.
