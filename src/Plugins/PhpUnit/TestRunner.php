@@ -75,7 +75,7 @@ class TestRunner
     private function addCoverageOption($cmd)
     {
         if ($this->config->hasTestOption('phpunit', 'codecoverage')) {
-            $cmd .= ' --coverage-html=' . $this->coverageDir;
+            $cmd .= ' --coverage-html ' . $this->coverageDir;
         }
 
         return $cmd;
