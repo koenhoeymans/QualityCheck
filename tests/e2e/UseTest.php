@@ -144,8 +144,6 @@ class UseTest extends TestUtils
 
     private function appliesGlobalIgnoreRuleToPhpCpd()
     {
-        // https://github.com/sebastianbergmann/phpcpd/pull/100
-        $this->markTestIncomplete('feature not completely implemented');
         $phpCpdDir = $this->buildDir . DIRECTORY_SEPARATOR
             . 'phpcpd' . DIRECTORY_SEPARATOR;
         $log = file_get_contents($phpCpdDir . 'cmdLog.txt');

@@ -74,7 +74,8 @@ class TestRunner
 
         $excludeFiles = implode($this->ignoreFiles, ',');
         if (!empty($excludeFiles)) {
-            $cmd .= ' --names-exclude=' . $excludeFiles;
+            $excludeFiles = '#"' . implode($this->ignoreFiles, '"#, #"') . '#"';
+            $cmd .= ' --regexps-exclude=' . $excludeFiles;
         }
 
         foreach ($this->ignoreDirs as $dir) {
