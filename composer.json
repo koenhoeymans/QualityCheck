@@ -11,11 +11,11 @@
 		"php": ">=7.1",
 		"ext-xdebug": "*",
 		"phpunit/phpunit": "6.*",
-    "phploc/phploc": "*",
-    "squizlabs/php_codesniffer": "*",
-    "sebastian/phpcpd": "*",
-    "symfony/yaml": "*",
-    "epa/epa": "*"
+        "phploc/phploc": "*",
+        "squizlabs/php_codesniffer": "*",
+        "sebastian/phpcpd": "*",
+        "symfony/yaml": "*",
+        "epa/epa": "*"
 	},
 	"autoload": {
 	    "psr-4": { "QualityCheck\\": ["src/", "tests", "tests/unit", "tests/e2e"] }
