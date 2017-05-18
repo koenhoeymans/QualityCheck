@@ -60,8 +60,7 @@ class TestRunner
         }
 
         $excluded = $this->config->getToIgnore();
-        foreach ($excluded as $key => $value)
-        {
+        foreach ($excluded as $key => $value) {
             $excluded[$key] = preg_quote($value);
         }
         if (!empty($excluded)) {
