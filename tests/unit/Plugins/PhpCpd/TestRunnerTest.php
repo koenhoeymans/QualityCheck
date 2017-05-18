@@ -109,4 +109,27 @@ class TestRunnerTest extends \QualityCheck\TestUtils
 
         $this->test->reportTestResults($this->testResults);
     }
+
+    /**
+     * @test
+     */
+    public function ignoresFilesAndDirectoriesThroughRegex()
+    {
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getBuildDir')
+             ->will($this->returnValue($this->buildDir));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getProjectDir')
+             ->will($this->returnValue(__DIR__));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getToIgnore')
+             ->will($this->returnValue(array('vendor', 'composer.json')));
+
+        $this->assertRegExp('/--regexps-exclude vendor, composer\\\.json/', $this->test->getCommand());
+
+        $this->test->reportTestResults($this->testResults);
+    }
 }

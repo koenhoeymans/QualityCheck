@@ -23,24 +23,11 @@ class TestRunner
             mkdir($outputDir);
         }
 
-        $this->addToIgnore();
-
         $log = shell_exec($this->getCommand());
 
         file_put_contents($outputDir . 'cmdLog.txt', $log);
 
         $results->addLogFile('PhpCpd log', 'phpcpd/cmdLog.txt');
-    }
-
-    private function addToIgnore()
-    {
-        foreach ($this->config->getToIgnore() as $fileOrDir) {
-            if (is_dir($fileOrDir)) {
-                $this->ignoreDirs[] = $fileOrDir;
-            } else {
-                $this->ignoreFiles[] = $fileOrDir;
-            }
-        }
     }
 
     public function getCommand()
@@ -72,14 +59,14 @@ class TestRunner
             }
         }
 
-        $excludeFiles = implode($this->ignoreFiles, ',');
-        if (!empty($excludeFiles)) {
-            $excludeFiles = '#"' . implode($this->ignoreFiles, '"#, #"') . '#"';
-            $cmd .= ' --regexps-exclude=' . $excludeFiles;
+        $excluded = $this->config->getToIgnore();
+        foreach ($excluded as $key => $value)
+        {
+            $excluded[$key] = preg_quote($value);
         }
-
-        foreach ($this->ignoreDirs as $dir) {
-            $cmd .= ' --exclude=' . $dir;
+        if (!empty($excluded)) {
+            $excluded = '' . implode($excluded, ', ') . '';
+            $cmd .= ' --regexps-exclude ' . $excluded;
         }
 
         $cmd .= ' ' . $this->config->getProjectDir();
