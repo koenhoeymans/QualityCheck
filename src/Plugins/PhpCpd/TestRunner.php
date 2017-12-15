@@ -64,7 +64,7 @@ class TestRunner
             $excluded[$key] = preg_quote($value);
         }
         if (!empty($excluded)) {
-            $excluded = '' . implode($excluded, ', ') . '';
+            $excluded = '\'~' . implode($excluded, '|') . '~\'';
             $cmd .= ' --regexps-exclude ' . $excluded;
         }
 

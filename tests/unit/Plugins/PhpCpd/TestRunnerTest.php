@@ -128,7 +128,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->method('getToIgnore')
              ->will($this->returnValue(array('vendor', 'composer.json')));
 
-        $this->assertRegExp('/--regexps-exclude vendor, composer\\\.json/', $this->test->getCommand());
+        $this->assertRegExp('/\'\~vendor\|composer\\\.json\~\'/', $this->test->getCommand());
 
         $this->test->reportTestResults($this->testResults);
     }
