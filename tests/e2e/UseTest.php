@@ -50,6 +50,7 @@ class UseTest extends TestUtils
         $this->doesCopyPasteDetectorTest();
         $this->createsOverviewOfTestRuns();
         $this->appliesGlobalIgnoreRuleToPhpCpd();
+        $this->doesPhpMessDetectorTest();
     }
 
     private function createsBuildDir()
@@ -150,5 +151,16 @@ class UseTest extends TestUtils
 
         // the ignored file bar.php contains duplication according to PHPCPD
         $this->assertContains('0.00% duplicated lines', $log);
+    }
+
+    private function doesPhpMessDetectorTest()
+    {
+        $phpmdReport = $this->buildDir . DIRECTORY_SEPARATOR . 'phpmd' .
+            DIRECTORY_SEPARATOR . 'index.html';
+        $this->assertTrue(
+            file_exists($phpmdReport),
+            'PHPMD file does not exist'
+        );
+        $this->assertContains('PHPMD', file_get_contents($overviewFile));
     }
 }

@@ -10,7 +10,8 @@ class PluginLoader
         'PHPUNIT' => 'PhpUnit',
         'PHPLOC' => 'PhpLoc',
         'PHPCS' => 'PhpCs',
-        'PHPCPD' => 'PhpCpd'
+        'PHPCPD' => 'PhpCpd',
+        'PHPMD' => 'PhpMd'
     );
 
     public function __construct(

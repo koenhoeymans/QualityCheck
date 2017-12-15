@@ -14,6 +14,7 @@
         "phploc/phploc": "*",
         "squizlabs/php_codesniffer": "*",
         "sebastian/phpcpd": "*",
+        "phpmd/phpmd": "2.*",
         "symfony/yaml": "*",
         "epa/epa": "*"
 	},
