@@ -62,7 +62,8 @@ class TestRunner
             }
         }
 
-        $cmd .= ' ' . $this->config->getProjectDir();
+        $cmd .= ' ' . $this->config->getProjectDir()
+            . ' text cleancode,codesize,controversial,design,naming,unusedcode';
 
         return $cmd;
     }

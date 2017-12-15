@@ -44,10 +44,14 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getBuildDir')
              ->will($this->returnValue($this->buildDir));
-
-        $this->assertTrue(file_exists($this->logfile));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getProjectDir')
+             ->will($this->returnValue(__FILE__));
 
         $this->phpMdRunner->reportTestResults($this->testResults);
+
+        $this->assertTrue(file_exists($this->logfile));
     }
 
     /**
