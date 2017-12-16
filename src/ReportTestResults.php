@@ -12,7 +12,7 @@ class ReportTestResults implements \Epa\Api\Event
      * @param string $name
      * @param string $link
      */
-    public function addLogFile($name, $link)
+    public function addLogFile(string $name, string $link)
     {
         $this->logFiles[$name] = $link;
     }
