@@ -13,7 +13,7 @@ class QualityCheck
         $this->config = $config;
     }
 
-    public function build()
+    public function build() : void
     {
         $buildDir = $this->config->getBuildDir();
 
