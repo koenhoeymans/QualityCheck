@@ -27,7 +27,7 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
 
         $this->buildDir = sys_get_temp_dir();
         $this->logfile = $this->buildDir . DIRECTORY_SEPARATOR
-            . 'phpmd' . DIRECTORY_SEPARATOR . 'result.html';
+            . 'phpmd' . DIRECTORY_SEPARATOR . 'cmdLog.txt';
     }
 
     public function teardown()
@@ -63,6 +63,10 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getBuildDir')
              ->will($this->returnValue($this->buildDir));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getProjectDir')
+             ->will($this->returnValue(__FILE__));
 
         $this->testResults->expects($this->once())->method('addLogFile');
 

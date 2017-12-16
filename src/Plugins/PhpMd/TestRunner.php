@@ -20,7 +20,7 @@ class TestRunner
         $log = shell_exec($this->getCommand());
 
         file_put_contents($this->outputDir . 'cmdLog.txt', $log);
-        $results->addLogFile('PhpMd log', 'phpmd/cmdLog.txt');
+        $results->addLogFile('PhpMd log', 'phpmd/result.txt');
     }
 
     private function createOutputDir()
