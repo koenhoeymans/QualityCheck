@@ -10,17 +10,17 @@ abstract class CommandBuilder
 
     protected $ignoreFiles = array();
 
-    public function setProjectDir(string $dir)
+    public function setProjectDir(string $dir) : void
     {
         $this->projectDir = $dir;
     }
 
-    public function ignoreDir(string $dir)
+    public function ignoreDir(string $dir) : void
     {
         $this->ignoreDirs[] = $dir;
     }
 
-    public function ignoreFile(string $file)
+    public function ignoreFile(string $file) : void
     {
         $this->ignoreFiles[] = $file;
     }
