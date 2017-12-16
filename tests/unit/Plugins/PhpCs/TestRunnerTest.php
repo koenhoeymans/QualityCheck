@@ -57,7 +57,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
     }
 
     /**
-     * @dd:wtest
+     * @test
      */
     public function addsLogFileToTestResults()
     {
