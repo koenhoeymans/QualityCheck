@@ -8,9 +8,6 @@ class ReportTestResults implements \Epa\Api\Event
 
     /**
      * Add the relative url to a log file.
-     *
-     * @param string $name
-     * @param string $link
      */
     public function addLogFile(string $name, string $link) : void
     {
