@@ -12,5 +12,5 @@ interface Config
 
     public function getToIgnore() : array;
 
-    public function hasTestOption($testName, $option) : bool;
+    public function hasTestOption(string $testName, string $option) : bool;
 }

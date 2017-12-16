@@ -68,7 +68,7 @@ class YmlConfig implements Config
         }
     }
 
-    public function hasTestOption($testName, $option) : bool
+    public function hasTestOption(string $testName, string $option) : bool
     {
         $settings = $this->getSettings();
 
