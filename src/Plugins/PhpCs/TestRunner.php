@@ -25,7 +25,7 @@ class TestRunner
         }
         file_put_contents($outputDir . 'cmdLog.txt', $log);
 
-        $results->addLogFile('PhpCodeSniffer PSR2 log', 'phpcs/cmdLog.txt');
+        $results->addLogFile('PhpCodeSniffer PSR2 log', $outputDir . 'cmdLog.txt');
     }
 
     private function getCommand()
