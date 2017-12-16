@@ -20,7 +20,7 @@ class PluginLoader
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function loadFromConfig(Config $config)
+    public function loadFromConfig(Config $config) : void
     {
         foreach ($config->getTestNames() as $testName) {
             if (isset($this->testNames[strtoupper($testName)])) {
