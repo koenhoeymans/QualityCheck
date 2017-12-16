@@ -11,3 +11,4 @@ tests:
         - codecoverage
     phpcs:
     phpcpd:
+    phpmd:

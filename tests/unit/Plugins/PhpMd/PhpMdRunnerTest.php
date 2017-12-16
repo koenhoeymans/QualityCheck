@@ -48,6 +48,10 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getProjectDir')
              ->will($this->returnValue(__FILE__));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getToIgnore')
+             ->will($this->returnValue(array('Foo.php')));
 
         $this->phpMdRunner->reportTestResults($this->testResults);
 
@@ -67,8 +71,33 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getProjectDir')
              ->will($this->returnValue(__FILE__));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getToIgnore')
+             ->will($this->returnValue(array('Foo.php')));
 
         $this->testResults->expects($this->once())->method('addLogFile');
+
+        $this->phpMdRunner->reportTestResults($this->testResults);
+    }
+
+    /**
+     * @test
+     */
+    public function excludesDirectories()
+    {
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getBuildDir')
+             ->will($this->returnValue($this->buildDir));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getProjectDir')
+             ->will($this->returnValue(__FILE__));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getToIgnore')
+             ->will($this->returnValue(array('Foo.php')));
 
         $this->phpMdRunner->reportTestResults($this->testResults);
     }

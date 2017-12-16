@@ -20,7 +20,7 @@ class TestRunner
         $log = shell_exec($this->getCommand());
 
         file_put_contents($this->outputDir . 'cmdLog.txt', $log);
-        $results->addLogFile('PhpMd log', 'phpmd/result.txt');
+        $results->addLogFile('PhpMd log', $this->outputDir . 'result.html');
     }
 
     private function createOutputDir()
@@ -63,7 +63,18 @@ class TestRunner
         }
 
         $cmd .= ' ' . $this->config->getProjectDir()
-            . ' text cleancode,codesize,controversial,design,naming,unusedcode';
+            . ' html cleancode,codesize,controversial,design,naming,unusedcode';
+
+        $excluded = $this->config->getToIgnore();
+        foreach ($excluded as $key => $value) {
+            $excluded[$key] = preg_quote($value);
+        }
+        if (!empty($excluded)) {
+            $excluded = implode($excluded, ',');
+            $cmd .= ' --exclude ' . $excluded;
+        }
+
+        $cmd .= ' --reportfile ' . $this->outputDir . 'result.html';
 
         return $cmd;
     }
