@@ -15,7 +15,7 @@ class TestRunner
         $this->config = $config;
     }
 
-    public function reportTestResults(\QualityCheck\ReportTestResults $results)
+    public function reportTestResults(\QualityCheck\ReportTestResults $results) : void
     {
         $outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
             . 'phpcpd' . DIRECTORY_SEPARATOR;
@@ -30,7 +30,7 @@ class TestRunner
         $results->addLogFile('PhpCpd log', 'phpcpd/cmdLog.txt');
     }
 
-    public function getCommand()
+    public function getCommand() : string
     {
         $bins = array(
             __DIR__ . DIRECTORY_SEPARATOR
