@@ -17,7 +17,7 @@ class TestRunner
         $this->config = $config;
     }
 
-    public function reportTestResults(\QualityCheck\ReportTestResults $results)
+    public function reportTestResults(\QualityCheck\ReportTestResults $results) : void
     {
         $this->createOutputDir();
         $this->addToIgnore();
@@ -28,7 +28,7 @@ class TestRunner
         $results->addLogFile('PhpLoc log', 'phploc/cmdLog.txt');
     }
 
-    private function addToIgnore()
+    private function addToIgnore() : void
     {
         foreach ($this->config->getToIgnore() as $fileOrDir) {
             if (is_dir($fileOrDir)) {
@@ -39,7 +39,7 @@ class TestRunner
         }
     }
 
-    private function createOutputDir()
+    private function createOutputDir() : void
     {
         $this->outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
             . 'phploc' . DIRECTORY_SEPARATOR;
@@ -49,7 +49,7 @@ class TestRunner
         }
     }
 
-    private function getCommand()
+    private function getCommand() : string
     {
         $bins = array(
             __DIR__ . DIRECTORY_SEPARATOR

@@ -15,7 +15,7 @@ class TestRunner
         $this->config = $config;
     }
 
-    public function reportTestResults(\QualityCheck\ReportTestResults $results)
+    public function reportTestResults(\QualityCheck\ReportTestResults $results) : void
     {
         $this->outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
             . 'phpunit' . DIRECTORY_SEPARATOR;
@@ -38,7 +38,7 @@ class TestRunner
         }
     }
 
-    private function getCommand()
+    private function getCommand() : string
     {
         $bins = array(
             __DIR__ . DIRECTORY_SEPARATOR
@@ -72,7 +72,7 @@ class TestRunner
         return $cmd;
     }
 
-    private function addCoverageOption($cmd)
+    private function addCoverageOption($cmd) : string
     {
         if ($this->config->hasTestOption('phpunit', 'codecoverage')) {
             $cmd .= ' --coverage-html ' . $this->coverageDir;

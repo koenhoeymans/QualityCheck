@@ -4,7 +4,7 @@ namespace QualityCheck\Plugins\PhpLoc;
 
 class TestRunnerFactory implements \QualityCheck\Plugins\TestRunnerFactory
 {
-    public function create()
+    public function create() : TestRunner
     {
         $ymlConfig = new \Symfony\Component\Yaml\Parser();
         $config = new \QualityCheck\YmlConfig($ymlConfig);

@@ -11,7 +11,7 @@ class Registrar implements \Epa\Api\Plugin
         $this->testRunnerFactory = $factory;
     }
 
-    public function registerHandlers(\Epa\Api\EventDispatcher $eventDispatcher)
+    public function registerHandlers(\Epa\Api\EventDispatcher $eventDispatcher) : void
     {
         $eventDispatcher->registerForEvent(
             'QualityCheck\\ReportTestResults',
@@ -19,7 +19,7 @@ class Registrar implements \Epa\Api\Plugin
         );
     }
 
-    public function initTest(\QualityCheck\ReportTestResults $testResults)
+    public function initTest(\QualityCheck\ReportTestResults $testResults) : void
     {
         $testRunner = $this->testRunnerFactory->create();
         $testRunner->reportTestResults($testResults);

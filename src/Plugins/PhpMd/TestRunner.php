@@ -13,7 +13,7 @@ class TestRunner
         $this->config = $config;
     }
 
-    public function reportTestResults(\QualityCheck\ReportTestResults $results)
+    public function reportTestResults(\QualityCheck\ReportTestResults $results) : void
     {
         $this->createOutputDir();
 
@@ -23,7 +23,7 @@ class TestRunner
         $results->addLogFile('PhpMd log', $this->outputDir . 'result.html');
     }
 
-    private function createOutputDir()
+    private function createOutputDir() : void
     {
         $this->outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
             . 'phpmd' . DIRECTORY_SEPARATOR;
@@ -33,7 +33,7 @@ class TestRunner
         }
     }
 
-    private function getCommand()
+    private function getCommand() : string
     {
         $bins = array(
             __DIR__ . DIRECTORY_SEPARATOR
