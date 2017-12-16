@@ -13,7 +13,7 @@ class YmlConfig implements Config
         $this->yamlParser = $parser;
     }
 
-    public function getBuildDir()
+    public function getBuildDir() : string
     {
         $settings = $this->getSettings();
 
@@ -30,7 +30,7 @@ class YmlConfig implements Config
         }
     }
 
-    protected function getSettings()
+    protected function getSettings() : array
     {
         if (!isset($this->settings)) {
             $file = $this->getProjectDir() . DIRECTORY_SEPARATOR . 'qc.yml';
@@ -41,7 +41,7 @@ class YmlConfig implements Config
         return $this->settings;
     }
 
-    public function getProjectDir()
+    public function getProjectDir() : string
     {
         if (!isset($_SERVER['argv'][1])) {
             $baseDir = getCwd();
@@ -52,13 +52,13 @@ class YmlConfig implements Config
         return realpath($baseDir);
     }
 
-    public function getTestNames()
+    public function getTestNames() : array
     {
         $settings = $this->getSettings();
         return array_keys((array) $settings['tests']);
     }
 
-    public function getToIgnore()
+    public function getToIgnore() : array
     {
         $settings = $this->getSettings();
         if (isset($settings['settings']['ignore'])) {
@@ -68,7 +68,7 @@ class YmlConfig implements Config
         }
     }
 
-    public function hasTestOption($testName, $option)
+    public function hasTestOption($testName, $option) : bool
     {
         $settings = $this->getSettings();
 

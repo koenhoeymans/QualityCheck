@@ -4,13 +4,13 @@ namespace QualityCheck;
 
 interface Config
 {
-    public function getBuildDir();
+    public function getBuildDir() : string;
 
-    public function getProjectDir();
+    public function getProjectDir() : string;
 
-    public function getTestNames();
+    public function getTestNames() : array;
 
-    public function getToIgnore();
+    public function getToIgnore() : array;
 
-    public function hasTestOption($testName, $option);
+    public function hasTestOption($testName, $option) : bool;
 }
