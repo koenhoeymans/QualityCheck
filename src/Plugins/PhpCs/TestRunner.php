@@ -11,7 +11,7 @@ class TestRunner
         $this->config = $config;
     }
 
-    public function reportTestResults(\QualityCheck\ReportTestResults $results)
+    public function reportTestResults(\QualityCheck\ReportTestResults $results) : void
     {
         $outputDir = $this->config->getBuildDir() . DIRECTORY_SEPARATOR
             . 'phpcs' . DIRECTORY_SEPARATOR;
@@ -28,7 +28,7 @@ class TestRunner
         $results->addLogFile('PhpCodeSniffer PSR2 log', $outputDir . 'cmdLog.txt');
     }
 
-    private function getCommand()
+    private function getCommand() : string
     {
         $bins = array(
             __DIR__ . DIRECTORY_SEPARATOR
