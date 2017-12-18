@@ -14,7 +14,7 @@ class TestRunnerTest extends \QualityCheck\TestUtils
 
     private $logfile;
 
-    private $cmdline;
+    private $composerBinDir;
 
     public function setup()
     {
@@ -30,13 +30,14 @@ class TestRunnerTest extends \QualityCheck\TestUtils
         $this->buildDir = sys_get_temp_dir();
         $this->logfile = $this->buildDir . DIRECTORY_SEPARATOR
             . 'phpcpd' . DIRECTORY_SEPARATOR . 'cmdLog.txt';
-        $this->cmdline = __DIR__ . DIRECTORY_SEPARATOR . '..'
-            . DIRECTORY_SEPARATOR . '..'
-            . DIRECTORY_SEPARATOR . '..'
-            . DIRECTORY_SEPARATOR . '..'
-            . DIRECTORY_SEPARATOR . 'vendor'
-            . DIRECTORY_SEPARATOR . 'bin'
-            . DIRECTORY_SEPARATOR . 'phpcpd ' . sys_get_temp_dir();
+        $this->composerBinDir = realpath(__DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin') . DIRECTORY_SEPARATOR;
+
     }
 
     public function teardown()
@@ -61,6 +62,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getProjectDir')
              ->will($this->returnValue(__DIR__));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
 
@@ -85,6 +90,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->once())
              ->method('addLogFile')
              ->with('PhpCpd log', 'phpcpd/cmdLog.txt');
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }
@@ -106,6 +115,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getToIgnore')
              ->will($this->returnValue(array('vendor')));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }
@@ -127,6 +140,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getToIgnore')
              ->will($this->returnValue(array('vendor', 'composer.json')));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->assertRegExp('/\'\~vendor\|composer\\\.json\~\'/', $this->test->getCommand());
 

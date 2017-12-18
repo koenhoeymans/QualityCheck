@@ -14,6 +14,8 @@ class TestRunnerTest extends \QualityCheck\TestUtils
 
     private $logfile;
 
+    private $composerBinDir;
+
     public function setup()
     {
         $this->config = $this->createMock('\\QualityCheck\\Config');
@@ -25,7 +27,14 @@ class TestRunnerTest extends \QualityCheck\TestUtils
         $this->buildDir = sys_get_temp_dir();
         $this->logfile = $this->buildDir  . DIRECTORY_SEPARATOR
             . 'phpcs' . DIRECTORY_SEPARATOR . 'cmdLog.txt';
-    }
+        $this->composerBinDir = realpath(__DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin') . DIRECTORY_SEPARATOR;
+   }
 
     public function teardown()
     {
@@ -49,6 +58,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getProjectDir')
              ->will($this->returnValue(__DIR__ . '/ContainsPsr2Mistake.php'));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
 
@@ -77,6 +90,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getProjectDir')
              ->will($this->returnValue(__DIR__ . '/ContainsPsr2Mistake.php'));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }
@@ -98,6 +115,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getProjectDir')
              ->will($this->returnValue(__DIR__ . '/ContainsPsr2Mistake.php'));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }

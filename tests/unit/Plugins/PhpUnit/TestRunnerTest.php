@@ -14,6 +14,8 @@ class TestRunnerTest extends \QualityCheck\TestUtils
 
     private $logfile;
 
+    private $composerBinDir;
+
     public function setup()
     {
         $this->teardown();
@@ -28,6 +30,13 @@ class TestRunnerTest extends \QualityCheck\TestUtils
         $this->buildDir = sys_get_temp_dir();
         $this->logfile = $this->buildDir . DIRECTORY_SEPARATOR
             . 'phpunit' . DIRECTORY_SEPARATOR . 'cmdLog.txt';
+        $this->composerBinDir = realpath(__DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin') . DIRECTORY_SEPARATOR;
     }
 
     public function teardown()
@@ -51,6 +60,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->will($this->returnValue(
                  __DIR__ . DIRECTORY_SEPARATOR . 'SampleProject'
              ));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
 
@@ -75,6 +88,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->once())
              ->method('addLogFile')
              ->with('PhpUnit log', 'phpunit/cmdLog.txt');
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }
@@ -99,6 +116,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->method('hasTestOption')
              ->with('phpunit', 'codecoverage')
              ->will($this->returnValue(true));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
 
@@ -138,6 +159,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
                  'CodeCoverage',
                  $ccIndexFile
              );
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }

@@ -40,32 +40,7 @@ class TestRunner
 
     private function getCommand() : string
     {
-        $bins = array(
-            __DIR__ . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . 'vendor' . DIRECTORY_SEPARATOR
-            . 'bin' . DIRECTORY_SEPARATOR
-            . 'phpunit',
-            __DIR__ . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . 'vendor' . DIRECTORY_SEPARATOR
-            . 'bin' . DIRECTORY_SEPARATOR
-            . 'phpunit',
-        );
-
-        foreach ($bins as $bin) {
-            $cmd = realpath($bin);
-            if ($cmd) {
-                break;
-            }
-        }
+        $cmd = $this->config->getComposerBinDir() . 'phpunit';
 
         $cmd = $this->addCoverageOption($cmd);
 

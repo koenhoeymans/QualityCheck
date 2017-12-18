@@ -30,32 +30,7 @@ class TestRunner
 
     private function getCommand() : string
     {
-        $bins = array(
-            __DIR__ . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . 'vendor' . DIRECTORY_SEPARATOR
-            . 'bin' . DIRECTORY_SEPARATOR
-            . 'phpcs',
-            __DIR__ . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . 'vendor' . DIRECTORY_SEPARATOR
-            . 'bin' . DIRECTORY_SEPARATOR
-            . 'phpcs',
-        );
-
-        foreach ($bins as $bin) {
-            $cmd = realpath($bin);
-            if ($cmd) {
-                break;
-            }
-        }
+        $cmd = $this->config->getComposerBinDir() . 'phpcs';
 
         $exclude = implode($this->config->getToIgnore(), ',');
 

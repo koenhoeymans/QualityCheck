@@ -28,7 +28,14 @@ class TestRunnerTest extends \QualityCheck\TestUtils
         $this->buildDir = sys_get_temp_dir();
         $this->logfile = $this->buildDir . DIRECTORY_SEPARATOR
             . 'phploc' . DIRECTORY_SEPARATOR . 'cmdLog.txt';
-    }
+        $this->composerBinDir = realpath(__DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin') . DIRECTORY_SEPARATOR;
+   }
 
     public function teardown()
     {
@@ -52,6 +59,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getToIgnore')
              ->will($this->returnValue(array()));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
 
@@ -78,6 +89,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->once())
              ->method('addLogFile')
              ->with('PhpLoc log', 'phploc/cmdLog.txt');
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }
@@ -95,6 +110,10 @@ class TestRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getToIgnore')
              ->will($this->returnValue(array('Foo.php')));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->test->reportTestResults($this->testResults);
     }

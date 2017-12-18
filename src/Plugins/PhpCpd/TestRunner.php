@@ -32,32 +32,7 @@ class TestRunner
 
     public function getCommand() : string
     {
-        $bins = array(
-            __DIR__ . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . 'vendor' . DIRECTORY_SEPARATOR
-            . 'bin' . DIRECTORY_SEPARATOR
-            . 'phpcpd',
-            __DIR__ . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . '..' . DIRECTORY_SEPARATOR
-            . 'vendor' . DIRECTORY_SEPARATOR
-            . 'bin' . DIRECTORY_SEPARATOR
-            . 'phpcpd',
-        );
-
-        foreach ($bins as $bin) {
-            $cmd = realpath($bin);
-            if ($cmd) {
-                break;
-            }
-        }
+        $cmd = $this->config->getComposerBinDir() . 'phpcpd';
 
         $excluded = $this->config->getToIgnore();
         foreach ($excluded as $key => $value) {

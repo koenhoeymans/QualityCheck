@@ -204,4 +204,19 @@ class YmlConfigTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($this->config->hasTestOption('foo', 'bar'));
     }
+
+    /**
+     * @test
+     */
+    public function knowsPathToVendorDir()
+    {
+        $vendorDir = __DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin' . DIRECTORY_SEPARATOR;
+        $vendorDir = realpath($vendorDir);
+
+        $this->assertSame($vendorDir, $this->config->getComposerBinDir());
+    }
 }

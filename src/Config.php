@@ -13,4 +13,6 @@ interface Config
     public function getToIgnore() : array;
 
     public function hasTestOption(string $testName, string $option) : bool;
+
+    public function getComposerBinDir() : string;
 }

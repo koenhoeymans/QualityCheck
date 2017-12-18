@@ -14,6 +14,8 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
 
     private $logfile;
 
+    private $composerBinDir;
+
     public function setup()
     {
         $this->teardown();
@@ -28,7 +30,14 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
         $this->buildDir = sys_get_temp_dir();
         $this->logfile = $this->buildDir . DIRECTORY_SEPARATOR
             . 'phpmd' . DIRECTORY_SEPARATOR . 'cmdLog.txt';
-    }
+        $this->composerBinDir = realpath(__DIR__ . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR
+            . 'vendor' . DIRECTORY_SEPARATOR
+            . 'bin') . DIRECTORY_SEPARATOR;
+   }
 
     public function teardown()
     {
@@ -52,6 +61,10 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getToIgnore')
              ->will($this->returnValue(array('Foo.php')));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->phpMdRunner->reportTestResults($this->testResults);
 
@@ -75,6 +88,10 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getToIgnore')
              ->will($this->returnValue(array('Foo.php')));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->testResults->expects($this->once())->method('addLogFile');
 
@@ -98,6 +115,10 @@ class PhpMdRunnerTest extends \QualityCheck\TestUtils
              ->expects($this->atLeastOnce())
              ->method('getToIgnore')
              ->will($this->returnValue(array('Foo.php')));
+        $this->config
+             ->expects($this->atLeastOnce())
+             ->method('getComposerBinDir')
+             ->will($this->returnValue($this->composerBinDir));
 
         $this->phpMdRunner->reportTestResults($this->testResults);
     }

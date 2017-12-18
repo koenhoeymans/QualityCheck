@@ -81,4 +81,14 @@ class YmlConfig implements Config
 
         return false;
     }
+
+    public function getComposerBinDir() : string
+    {
+        $dir = __DIR__ . DIRECTORY_SEPARATOR;
+        while (!($binDir = realpath($dir . 'vendor' . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR))) {
+            $dir .= '..' . DIRECTORY_SEPARATOR;
+        }
+
+        return $binDir;
+    }
 }
